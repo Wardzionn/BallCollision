@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace ViewModel
 {
-    internal class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         private readonly Action _execute;
         private readonly Func<bool> _canExecute;
@@ -44,7 +44,7 @@ namespace ViewModel
         /// <summary>
         /// Raises the <see cref="CanExecuteChanged" /> event.
         /// </summary>
-        internal void RaiseCanExecuteChanged()
+        public void RaiseCanExecuteChanged()
         {
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Data;
+using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
 
 namespace Logic
@@ -8,14 +10,19 @@ namespace Logic
     {
         public List<Ball> balls;
 
-        public void AddBall(double radius)
+        public Canvas canvas;
+
+        public Ball CreateBall(double radius)
         {
-            Random rng = new Random();
-
-            double x = rng.NextDouble() + 100;
-            double y = rng.NextDouble() + 100;
-
-            balls.Add(new Ball(radius,new Vector(x,y), new Vector(x,y)));
+            Vector2 location = canvas.generateLocation(radius);
+            return new Ball(radius, location, location);
         }
+
+        public void AddBall(Ball ball)
+        {
+            balls.Add(ball); 
+        }
+
+        
     }
 }
