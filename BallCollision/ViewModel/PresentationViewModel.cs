@@ -10,21 +10,41 @@ namespace ViewModel
 {
     public class PresentationViewModel  : ViewModelBase
     {
+        public CollisionModel model;
+
         public ObservableCollection<BallModel> balls { get; set; }
 
-        public ICommand AddBallCommand;
+       public ICommand AddBallsCommand { get; set; }
 
-        public int BallsCount = 10;
+        public int BallsCount { get; set; } = 10;
+
 
         public PresentationViewModel()
         {
             balls = new ObservableCollection<BallModel>();
-            AddBallCommand = new RelayCommand(() => RequestBall());
+            this.model = new CollisionModel();
+            AddBallsCommand = new RelayCommand(() => AddBalls());
         }
 
-        private void RequestBall()
+        public void AddBalls()
         {
-
+            for(int i = 0; i < balls.Count; i++)
+            {
+                balls.Add(AddBall());
+            }
+            RaisePropertyChanged(nameof(balls));
         }
+
+        public BallModel AddBall()
+        {
+            Random rng = new Random();
+            double x = rng.NextDouble() + 100;
+            double y = rng.NextDouble() + 100;
+            Ball kulka = new Ball(20, new Vector2(x, y), new Vector2(x, y));
+            BallModel bm = new BallModel(kulka);
+            return bm;
+        }
+
+ 
     }
 }

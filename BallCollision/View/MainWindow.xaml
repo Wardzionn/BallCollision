@@ -20,7 +20,7 @@
             <DockPanel DockPanel.Dock="Top">
                 <TextBlock Text="Balls Count" FontSize="20" Padding="10"/>
                 <TextBox Name="BallsCount"
-                     Text="{Binding BallsCount}"
+                     Text="{Binding BallsCount, UpdateSourceTrigger=PropertyChanged}"
                      TextAlignment="Center"
                      VerticalContentAlignment="Center"
                      TextWrapping="Wrap" Width="60"/>
