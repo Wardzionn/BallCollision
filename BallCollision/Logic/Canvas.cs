@@ -25,7 +25,7 @@ namespace Logic
 
         public bool inX(Ball ball)
         {
-            return ball.Position.X - ball.Radius >= LeftUpperCorner.x && ball.Position.x + ball.Radius <= RightLowerCorner.x;
+            return ball.Position.X - ball.Radius >= LeftUpperCorner.X && ball.Position.X + ball.Radius <= RightLowerCorner.X;
         }
 
         public bool inY(Ball ball)
@@ -37,7 +37,7 @@ namespace Logic
         {
 
             double x = rng.NextDoubleInRange(LeftUpperCorner.X + radius, RightLowerCorner.X - radius);
-            double y = rng.NextDoubleInRange(LeftUpperCorner. + radius, RightLowerCorner.Y - radius);
+            double y = rng.NextDoubleInRange(LeftUpperCorner.Y + radius, RightLowerCorner.Y - radius);
 
             return new Vector2((float)x, (float)y);
         }

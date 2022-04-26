@@ -17,12 +17,12 @@ namespace Model
 
         public double X
         {
-           get { return ball.Position.x; }
+           get { return ball.Position.X; }
         }
 
         public double Y
         {
-            get { return ball.Position.y; }
+            get { return ball.Position.Y; }
         }
 
         public double Radius
