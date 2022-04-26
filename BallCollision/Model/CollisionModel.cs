@@ -8,8 +8,11 @@ namespace Model
 {
     public class CollisionModel
     {
-        public List<BallModel> Balls { get; set; }
+        public LogicAPI collisionLogic;
 
-
+        public CollisionModel()
+        {
+            collisionLogic = new CollisionLogic();
+        }
     }
 }

@@ -8,9 +8,15 @@ namespace Logic
 {
     public class State
     {
-        public List<Ball> balls;
+        public BallList ballList;
 
         public Canvas canvas;
+
+        public State(Canvas canvas)
+        {
+            this.ballList = (BallList)DataApi.CreateData();
+            this.canvas = canvas;
+        }
 
         public Ball CreateBall(double radius)
         {
@@ -20,7 +26,7 @@ namespace Logic
 
         public void AddBall(Ball ball)
         {
-            balls.Add(ball); 
+            ballList.Add(ball);
         }
 
         
