@@ -16,7 +16,7 @@
             <ColumnDefinition Width="60*" />
         </Grid.ColumnDefinitions>
         <DockPanel Grid.Column="0"
-                   Background="ForestGreen">
+                   Background="#1d5936">
             <DockPanel DockPanel.Dock="Top">
                 <TextBlock Text="Balls Count" FontSize="20" Padding="10"/>
                 <TextBox Name="BallsCount"
@@ -25,25 +25,24 @@
                      VerticalContentAlignment="Center"
                      TextWrapping="Wrap" Width="60"/>
             </DockPanel>
-            <Button Name="Start"
-                    Content="Start"
-                    VerticalAlignment="Top"
-                    Grid.Row="1"
-                    Padding="20" 
-                    Command="{Binding SimulateCommand}"/>
             <Button Name="Stop"
                     Content="Stop"
-                    VerticalAlignment="Top"
                     Grid.Row="2"
+                    VerticalAlignment="Top"
                     Padding="20" 
-                    Command="{Binding StopCommand}"/>
+                    Command="{Binding StopCommand}" Width="101"/>
+            <Button x:Name="Start"
+                    Content="Start"
+                    VerticalAlignment="Top"
+                    Padding="20" 
+                    Command="{Binding SimulateCommand}" DockPanel.Dock="Left" Width="100"/>
         </DockPanel>
 
-        <Border x:Name="BallsArea" Grid.Column="1" BorderBrush="White" BorderThickness="3" Width="520" Height="520" Margin="20,10,0,0">
+        <Border x:Name="BallsArea" Grid.Column="1" BorderBrush="black" BorderThickness="3" Width="520" Height="520" Margin="20,10,0,0">
             <ItemsControl ItemsSource="{Binding balls}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas Name="Area" Background="BlueViolet" Width="510" Height="510" Grid.Column="1" />
+                        <Canvas Name="Area" Background="white" Width="510" Height="510" Grid.Column="1" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemContainerStyle>
@@ -54,11 +53,13 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Path Fill="Green">
-                            <Path.Data>
-                                <EllipseGeometry RadiusX="{Binding Radius}" RadiusY="{Binding Radius}" />
-                            </Path.Data>
-                        </Path>
+                        <Border BorderBrush="white" BorderThickness="5">
+                            <Path Fill="#1d5936" >
+                                <Path.Data>
+                                    <EllipseGeometry RadiusX="{Binding Radius}" RadiusY="{Binding Radius}" />
+                                </Path.Data>
+                            </Path>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

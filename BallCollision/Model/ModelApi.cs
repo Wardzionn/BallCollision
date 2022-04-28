@@ -12,6 +12,7 @@ namespace Model
         public abstract List<BallModel> balls { get;}
 
         public abstract void addBallsAndStart(int ballsCount);
+        public abstract void stopSim();
 
         public static ModelApi CreateApi()
         {
@@ -34,6 +35,16 @@ namespace Model
             {
                 collisionLogic.addBalls(ballsCount);
                 collisionLogic.start();
+            }
+
+            public override void stopSim()
+            {
+                if (balls.Count > 0)
+                {
+                    balls.Clear();
+                    collisionLogic.stop();
+                } 
+                
             }
 
 

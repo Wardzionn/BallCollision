@@ -11,6 +11,7 @@ namespace Logic
         public abstract void addBalls(int count);
 
         public abstract void start();
+        public abstract void stop();   
 
         public abstract List<Ball> getBalls();
 
@@ -47,6 +48,12 @@ namespace Logic
                 {
                     updatePosition = Task.Run(state.MoveBallsConstantly);
                 }
+            }
+
+            public override void stop()
+            {
+                state.balls.Clear();
+               
             }
 
       
