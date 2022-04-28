@@ -30,5 +30,7 @@ namespace Logic
             return new MyVector(v1.X *k , v1.Y * k);
         }
 
+
+
     }
 }

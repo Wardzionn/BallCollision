@@ -11,31 +11,39 @@ namespace LogicTest
         [TestMethod]
         public void AddRemoveBallsTest()
         {
-            State state = new State(500);
             LogicAPI logicApi = LogicAPI.Create();
-
             logicApi.addBalls(5);
-            Assert.AreEqual(state.balls.Count, 5);
+            Assert.AreEqual(logicApi.getBalls().Count, 5);
 
             logicApi.stop();
-            Assert.AreEqual(state.balls.Count, 0);
+            Assert.AreEqual(logicApi.getBalls().Count, 0);
         }
 
+        [TestMethod]
         public void MoveBallsTest()
         {
             State state = new State(500);
             LogicAPI logicApi = LogicAPI.Create();
             
             logicApi.addBalls(2);
-            MyVector pos1 = state.balls[0].Position;
-            MyVector pos2 = state.balls[1].Position;
+            
+            MyVector pos2 = logicApi.getBalls()[1].Position;
+            double pos1x = logicApi.getBalls()[0].Position.X;
+            double pos1y = logicApi.getBalls()[0].Position.Y;
+            double pos2x = logicApi.getBalls()[1].Position.X;
+            double pos2y = logicApi.getBalls()[1].Position.Y;
 
-            MyVector vel1 = state.balls[0].Velocity;
-            MyVector vel2 = state.balls[1].Velocity;
+            double vel1x = logicApi.getBalls()[0].Velocity.X;
+            double vel2x = logicApi.getBalls()[1].Velocity.X;
+            double vel1y = logicApi.getBalls()[0].Velocity.Y;
+            double vel2y = logicApi.getBalls()[1].Velocity.Y;
 
-            state.MoveBalls();
-            Assert.AreEqual(state.balls[0].Position, MyVector.add(pos1, vel1));
-            Assert.AreEqual(state.balls[1].Position, MyVector.add(pos2, vel2));
+            logicApi.getState().MoveBalls();
+
+            Assert.AreEqual(logicApi.getBalls()[0].Position.X, pos1x+vel1x);
+            Assert.AreEqual(logicApi.getBalls()[0].Position.Y, pos1y+vel1y);
+            Assert.AreEqual(logicApi.getBalls()[1].Position.X, pos2x+vel2x);
+            Assert.AreEqual(logicApi.getBalls()[1].Position.Y, pos2y+vel2y);
         }
     }
     

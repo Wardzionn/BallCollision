@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("LogicTest")]
 
 namespace Logic
 {
@@ -20,12 +23,13 @@ namespace Logic
             return new CollisionLogic(
                 data == null ? DataApi.CreateDataApi() : data);
         }
+        public abstract State getState();
 
         private class CollisionLogic : LogicAPI
         {
             private DataApi data;
             private Task updatePosition;
-            private State state;
+            private State state { get; }
 
             public CollisionLogic(DataApi data)
             {
@@ -40,6 +44,11 @@ namespace Logic
             public override List<Ball> getBalls()
             {
                 return state.balls;
+            }
+
+            public override State getState()
+            {
+                return state;
             }
 
             public override void start()

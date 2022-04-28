@@ -52,14 +52,12 @@
                     </Style>
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="white" BorderThickness="5">
-                            <Path Fill="#1d5936" >
-                                <Path.Data>
-                                    <EllipseGeometry RadiusX="{Binding Radius}" RadiusY="{Binding Radius}" />
-                                </Path.Data>
-                            </Path>
-                        </Border>
+                    <DataTemplate>                   
+                        <Path Fill="#1d5936" >
+                            <Path.Data>
+                                <EllipseGeometry RadiusX="{Binding Radius}" RadiusY="{Binding Radius}" />
+                            </Path.Data>
+                        </Path>                        
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
