@@ -38,18 +38,14 @@ namespace ViewModel
             this.model = model;
             balls = new ObservableCollection<BallModel>();
             SimulateCommand = new RelayCommand(() => StartButton());
-/*            StopCommand = new RelayCommand(() => StopButton());*/
         }
 
         private void StartButton()
         {
-            if (!running)
-            {
                 running = true;
                 model.addBallsAndStart(BallsCount);
                 task = new Task(UpdatePosition);
                 task.Start();
-            }
         }
 
         public void UpdatePosition()
