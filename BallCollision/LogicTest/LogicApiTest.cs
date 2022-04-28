@@ -11,12 +11,7 @@ namespace LogicTest
         [TestMethod]
         public void TestMethod1()
         {
-            LogicAPI logic = new CollisionLogic();
-
-            State cur = logic.getCurrentState();
-            Vector2 position = cur.canvas.generateLocation(50);
-            Ball ball = new Ball(50, position, position);
-            Assert.IsTrue(cur.canvas.IsInCanvas(ball));
+   
         }
     }
 }

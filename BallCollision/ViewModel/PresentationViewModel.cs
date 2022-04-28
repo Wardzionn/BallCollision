@@ -6,47 +6,70 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Numerics;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ViewModel
 {
-    public class PresentationViewModel  : ViewModelBase
+    public class PresentationViewModel : ViewModelBase
     {
-        public CollisionModel model;
-
+        public ModelApi model;
         public ObservableCollection<BallModel> balls { get; set; }
 
-       public ICommand AddBallsCommand { get; set; }
+        public ICommand SimulateCommand { get; set; }
+        public ICommand StopCommand { get; set; }
 
+        public bool state {  get; set; }
+
+        private Task task;
+
+        public bool running { get; set; }    
         public int BallsCount { get; set; } = 10;
 
-
-        public PresentationViewModel()
+        public PresentationViewModel() : this(ModelApi.CreateApi())
         {
+
+        }
+
+        public PresentationViewModel(ModelApi model)
+        {
+            running = false;
+            this.model = model;
             balls = new ObservableCollection<BallModel>();
-            this.model = new CollisionModel();
-            AddBallsCommand = new RelayCommand(() => AddBalls());
+            SimulateCommand = new RelayCommand(() => StartButton());
+/*            StopCommand = new RelayCommand(() => StopButton());*/
         }
 
-        public void AddBalls()
+        private void StartButton()
         {
-            for(int i = 0; i < balls.Count; i++)
+            if (!running)
             {
-                balls.Add(AddBall());
+                running = true;
+                model.addBallsAndStart(BallsCount);
+                task = new Task(UpdatePosition);
+                task.Start();
             }
-            RaisePropertyChanged(nameof(balls));
         }
 
-        public BallModel AddBall()
+        public void UpdatePosition()
         {
-            Random rng = new Random();
-            double x = rng.NextDouble() + 100;
-            double y = rng.NextDouble() + 100;
-            Ball kulka = new Ball(20, new Vector2((float)x, (float) y), new Vector2((float)x, (float)y));
-            BallModel bm = new BallModel(kulka);
-            return bm;
+            while (true)
+            {
+                ObservableCollection<BallModel> treadList = new ObservableCollection<BallModel>();
+
+                foreach (BallModel ball in model.balls)
+                {
+                    treadList.Add(ball);
+                }
+
+                balls = treadList;
+                RaisePropertyChanged(nameof(balls));
+                Thread.Sleep(10);
+            }
         }
 
- 
+
+
     }
 }

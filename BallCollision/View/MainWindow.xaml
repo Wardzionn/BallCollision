@@ -25,18 +25,25 @@
                      VerticalContentAlignment="Center"
                      TextWrapping="Wrap" Width="60"/>
             </DockPanel>
-            <Button Name="AddBallsButton"
-                    Content="Add balls"
+            <Button Name="Start"
+                    Content="Start"
                     VerticalAlignment="Top"
+                    Grid.Row="1"
                     Padding="20" 
-                    Command="{Binding AddBallsCommand}"/>
+                    Command="{Binding SimulateCommand}"/>
+            <Button Name="Stop"
+                    Content="Stop"
+                    VerticalAlignment="Top"
+                    Grid.Row="2"
+                    Padding="20" 
+                    Command="{Binding StopCommand}"/>
         </DockPanel>
 
-        <Border x:Name="BallsArea" Grid.Column="1" BorderBrush="White" BorderThickness="4" Width="500" Height="500">
+        <Border x:Name="BallsArea" Grid.Column="1" BorderBrush="White" BorderThickness="3" Width="520" Height="520" Margin="20,10,0,0">
             <ItemsControl ItemsSource="{Binding balls}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas Name="Area" Background="BlueViolet" Width="500" Height="500" Grid.Column="1"/>
+                        <Canvas Name="Area" Background="BlueViolet" Width="510" Height="510" Grid.Column="1" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemContainerStyle>
