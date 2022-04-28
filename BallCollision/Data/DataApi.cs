@@ -6,13 +6,17 @@ namespace Data
 {
     public abstract class DataApi
     {
-        public abstract void Add(Ball ball);
-        public abstract Ball Get(int index);
-        public abstract int GetBallCount();
-
-        public static DataApi CreateData()
+        public static DataApi CreateDataApi()
         {
-            return new BallList();
+            return new BallData();
+        }
+
+        private class BallData : DataApi
+        {
+            public BallData()
+            {
+
+            }
         }
     }
 }
