@@ -13,8 +13,6 @@ namespace Model
 
         public abstract void addBallsAndStart(int ballsCount);
 
-        public abstract void stop();
-
         public static ModelApi CreateApi()
         {
             return new CollisionModel();

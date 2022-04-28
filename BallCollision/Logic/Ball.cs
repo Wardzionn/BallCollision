@@ -24,11 +24,11 @@ namespace Data
             double x = Position.X + Velocity.X;
             double y = Position.Y + Velocity.Y;
 
-            if (x > edge || x < 0)
+            if (x > edge || x - Radius <= 0)
             {
                 Velocity.X = -Velocity.X;
             }
-            if (y > edge || y < 0)
+            if (y > edge || y - Radius <= 0)
             {
                 Velocity.Y = -Velocity.Y;
             }
