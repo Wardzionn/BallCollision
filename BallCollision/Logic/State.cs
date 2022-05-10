@@ -1,10 +1,12 @@
 ﻿using Data;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Numerics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+
 
 namespace Logic
 {
@@ -29,7 +31,10 @@ namespace Logic
             double vel_x = rng.NextDoubleInRange(1, 5);
             double vel_y = rng.NextDoubleInRange(1, 5);
 
-            return new Ball(new MyVector(pos_x,pos_y), new MyVector(vel_x,vel_y));
+            double radius = rng.NextDoubleInRange(5, 20);
+            double mass = rng.NextDoubleInRange(1, 8);
+
+            return new Ball(new MyVector(pos_x,pos_y), new MyVector(vel_x,vel_y), radius, mass);
         }
 
         public void AddBalls(int ballsCount)
@@ -37,7 +42,9 @@ namespace Logic
             balls = new List<Ball>();
             for (int i = 0; i < ballsCount; i++)
             {
+
                 balls.Add(CreateBall());
+
             }
         }
 
@@ -55,7 +62,7 @@ namespace Logic
             foreach (Ball ball in balls)
             {
                 ball.moveBall(canvasSize);
-            }
+            }            
         }
 
         public void MoveBallsConstantly()
@@ -63,6 +70,7 @@ namespace Logic
             while (true)
             {
                 MoveBalls();
+                CheckBallCollision();
                 Thread.Sleep(speed);
             }
         }
@@ -71,6 +79,26 @@ namespace Logic
         {
             updatePosition = new Task(MoveBallsConstantly);
             updatePosition.Start();
+        }
+
+        public void CheckBallCollision()
+        {
+            if (balls.Count > 0)
+            {
+                for (int i = 0; i < balls.Count; i++)
+                {
+                    for (int j = i+1; j < balls.Count; j++)
+                    {                       
+
+                        if (MyVector.Length(balls[i].Position, balls[j].Position) <= (balls[i].Radius + balls[j].Radius))
+                        {
+                            List<MyVector> vels = Ball.calculateVels(balls[i], balls[j]);
+                            balls[i].Velocity = vels[0];
+                            balls[j].Velocity = vels[1];
+                        }
+                    }
+                }
+            }
         }
 
 

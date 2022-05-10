@@ -14,6 +14,8 @@ namespace Model
         public abstract void addBallsAndStart(int ballsCount);
         public abstract void stopSim();
 
+    
+
         public static ModelApi CreateApi()
         {
             return new CollisionModel();
@@ -30,7 +32,6 @@ namespace Model
             }
 
       
-
             public override void addBallsAndStart(int ballsCount)
             {
                 collisionLogic.addBalls(ballsCount);
@@ -58,6 +59,8 @@ namespace Model
                 }
                 return result;
             }
+
+    
 
         }
 

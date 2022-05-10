@@ -22,12 +22,11 @@ namespace LogicTest
         [TestMethod]
         public void MoveBallsTest()
         {
-            State state = new State(500);
             LogicAPI logicApi = LogicAPI.Create();
             
             logicApi.addBalls(2);
             
-            MyVector pos2 = logicApi.getBalls()[1].Position;
+            
             double pos1x = logicApi.getBalls()[0].Position.X;
             double pos1y = logicApi.getBalls()[0].Position.Y;
             double pos2x = logicApi.getBalls()[1].Position.X;

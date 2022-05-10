@@ -8,7 +8,7 @@ namespace Model
 {
     public class BallModel
     {
-        private Ball ball;
+        public Ball ball { get; }
 
         public BallModel(Ball ball)
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace Logic
 {
     public class MyVector
@@ -30,7 +31,18 @@ namespace Logic
             return new MyVector(v1.X *k , v1.Y * k);
         }
 
+        public static double Length(MyVector v1, MyVector v2)
+        {
+            double length = Math.Sqrt(Math.Pow(v1.X, 2) + Math.Pow(v1.Y, 2));
+            double distance = Math.Sqrt(Math.Pow(v2.X-v1.X, 2)+Math.Pow(v2.Y-v1.Y, 2));
 
+            return distance;
+        }
+        
 
     }
+
+
+
 }
+

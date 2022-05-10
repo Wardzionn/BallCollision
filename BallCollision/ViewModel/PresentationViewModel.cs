@@ -63,14 +63,16 @@ namespace ViewModel
 
                 foreach (BallModel ball in model.balls)
                 {
+                    
                     treadList.Add(ball);
                 }
-
+                //model.collideBalls();
                 balls = treadList;
                 RaisePropertyChanged(nameof(balls));
                 Thread.Sleep(10);
             }
         }
+    
 
 
 
