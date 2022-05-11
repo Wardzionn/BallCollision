@@ -66,7 +66,7 @@ namespace ViewModel
                     
                     treadList.Add(ball);
                 }
-                //model.collideBalls();
+               
                 balls = treadList;
                 RaisePropertyChanged(nameof(balls));
                 Thread.Sleep(10);

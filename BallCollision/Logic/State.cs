@@ -12,17 +12,17 @@ namespace Logic
 {
     public class State
     {
-        public int canvasSize;
+        private int canvasSize;
         public List<Ball> balls { get; set; }
-        public Task updatePosition;
-        public int speed = 30;
+        private Task updatePosition;
+        private int speed = 30;
 
         public State(int canvasSize)
         {
             this.canvasSize = canvasSize;
         }
 
-        public Ball CreateBall()
+        private Ball CreateBall()
         {
             Random rng = new Random();
             double pos_x = rng.NextDoubleInRange(1, canvasSize);
@@ -50,7 +50,7 @@ namespace Logic
 
         public void removeBalls(int BallsNumber)
         {
-            balls = new List<Ball>();
+            
             for (int i = 0; i < BallsNumber; i++)
             {
                 balls.RemoveAt(i);
@@ -90,9 +90,9 @@ namespace Logic
                     for (int j = i+1; j < balls.Count; j++)
                     {                       
 
-                        if (MyVector.Length(balls[i].Position, balls[j].Position) <= (balls[i].Radius + balls[j].Radius))
+                        if (balls[i].IsTouching(balls[j]))
                         {
-                            List<MyVector> vels = Ball.calculateVels(balls[i], balls[j]);
+                            List<MyVector> vels = Ball.CalculateVels(balls[i], balls[j]);
                             balls[i].Velocity = vels[0];
                             balls[j].Velocity = vels[1];
                         }

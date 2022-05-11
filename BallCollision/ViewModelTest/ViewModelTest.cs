@@ -1,9 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LogicTest
+namespace ViewModelTest
 {
     [TestClass]
-    public class UnitTest1
+    public class ViewModelTest
     {
         [TestMethod]
         public void TestMethod1()

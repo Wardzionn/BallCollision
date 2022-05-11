@@ -38,14 +38,20 @@ namespace Data
             Position.X = x;
             Position.Y = y;
         }
-
-        public void bounceBall()
+        
+        public bool IsTouching(Ball ball2)
         {
-            Velocity.X = -Velocity.X;
-            Velocity.Y = -Velocity.Y;
+            if (MyVector.Distance(this.Position, ball2.Position) <= this.Radius + ball2.Radius)
+            {
+                return true;
+            } 
+            else
+            {
+                return false;
+            }
         }
 
-        public static List<MyVector> calculateVels(Ball b1, Ball b2)
+        public static List<MyVector> CalculateVels(Ball b1, Ball b2)
         {
             List<MyVector> result = new List<MyVector>();
 

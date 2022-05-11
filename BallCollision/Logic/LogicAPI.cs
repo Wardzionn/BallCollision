@@ -12,12 +12,8 @@ namespace Logic
     public abstract class LogicAPI
     {
         public abstract void addBalls(int count);
-
         public abstract void start();
         public abstract void stop();
-
-        
-
         public abstract List<Ball> getBalls();
 
         public static LogicAPI Create(DataApi data = default(DataApi))
