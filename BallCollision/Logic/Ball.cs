@@ -58,20 +58,24 @@ namespace Data
             double distanceX = b1.Position.X - b2.Position.X;
             double distanceY = b1.Position.Y - b2.Position.Y;
             double collisionAngle = Math.Atan2(distanceY, distanceX);
-            double pA_magnitude = Math.Sqrt(b1.Velocity.X * b1.Velocity.X + b1.Velocity.Y * b1.Velocity.Y);
-            double pB_magnitude = Math.Sqrt(b2.Velocity.X * b2.Velocity.X + b2.Velocity.Y * b2.Velocity.Y);
-            double pA_direction = Math.Atan2(b1.Velocity.Y, b1.Velocity.X);
-            double pB_direction = Math.Atan2(b2.Velocity.Y, b2.Velocity.X);
-            double pA_newVelocityX = pA_magnitude * Math.Cos(pA_direction - collisionAngle);
-            double pA_newVelocityY = pA_magnitude * Math.Sin(pA_direction - collisionAngle);
-            double pB_newVelocityX = pB_magnitude * Math.Cos(pB_direction - collisionAngle);
-            double pB_newVelocityY = pB_magnitude * Math.Sin(pB_direction - collisionAngle);
-            double pA_finalVelocityX = ((b1.Mass - b2.Mass) * pA_newVelocityX + (b2.Mass + b2.Mass) * pB_newVelocityX) / (b1.Mass + b2.Mass);
-            double pB_finalVelocityX = ((b1.Mass + b1.Mass) * pA_newVelocityX + (b2.Mass - b1.Mass) * pB_newVelocityX) / (b1.Mass + b2.Mass);
-            double pA_finalVelocityY = pA_newVelocityY;
-            double pB_finalVelocityY = pB_newVelocityY;
-            MyVector b1_Velocity = new MyVector((float)(Math.Cos(collisionAngle) * pA_finalVelocityX + Math.Cos(collisionAngle + Math.PI / 2) * pA_finalVelocityY), (float)(Math.Sin(collisionAngle) * pA_finalVelocityX + Math.Sin(collisionAngle + Math.PI / 2) * pA_finalVelocityY));
-            MyVector b2_Velocity = new MyVector((float)(Math.Cos(collisionAngle) * pB_finalVelocityX + Math.Cos(collisionAngle + Math.PI / 2) * pB_finalVelocityY), (float)(Math.Sin(collisionAngle) * pB_finalVelocityX + Math.Sin(collisionAngle + Math.PI / 2) * pB_finalVelocityY));
+            
+            double b1_magnitude = Math.Sqrt(b1.Velocity.X * b1.Velocity.X + b1.Velocity.Y * b1.Velocity.Y);
+            double b2_magnitude = Math.Sqrt(b2.Velocity.X * b2.Velocity.X + b2.Velocity.Y * b2.Velocity.Y);
+            
+            double b1_direction = Math.Atan2(b1.Velocity.Y, b1.Velocity.X);
+            double b2_direction = Math.Atan2(b2.Velocity.Y, b2.Velocity.X);
+
+            double b1_newVelocityX = b1_magnitude * Math.Cos(b1_direction - collisionAngle);
+            double b2_newVelocityX = b2_magnitude * Math.Cos(b2_direction - collisionAngle);
+            
+            double b1_finalVelocityX = ((b1.Mass - b2.Mass) * b1_newVelocityX + (b2.Mass + b2.Mass) * b2_newVelocityX) / (b1.Mass + b2.Mass);
+            double b2_finalVelocityX = ((b1.Mass + b1.Mass) * b1_newVelocityX + (b2.Mass - b1.Mass) * b2_newVelocityX) / (b1.Mass + b2.Mass);
+            
+            double b1_finalVelocityY = b1_magnitude * Math.Sin(b1_direction - collisionAngle);
+            double b2_finalVelocityY = b2_magnitude * Math.Sin(b2_direction - collisionAngle);
+            
+            MyVector b1_Velocity = new MyVector((float)(Math.Cos(collisionAngle) * b1_finalVelocityX + Math.Cos(collisionAngle + Math.PI / 2) * b1_finalVelocityY), (float)(Math.Sin(collisionAngle) * b1_finalVelocityX + Math.Sin(collisionAngle + Math.PI / 2) * b1_finalVelocityY));
+            MyVector b2_Velocity = new MyVector((float)(Math.Cos(collisionAngle) * b2_finalVelocityX + Math.Cos(collisionAngle + Math.PI / 2) * b2_finalVelocityY), (float)(Math.Sin(collisionAngle) * b2_finalVelocityX + Math.Sin(collisionAngle + Math.PI / 2) * b2_finalVelocityY));
 
             result.Add(b1_Velocity);
             result.Add(b2_Velocity);
