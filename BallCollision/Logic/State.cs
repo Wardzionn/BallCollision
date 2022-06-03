@@ -82,7 +82,7 @@ namespace Logic
 
         public void MoveBallsConstantly()
         {
-            _clock = new Clock(logData, 1000);
+            _clock = new Clock(logData, 2000);
             _clock.Start();
             while (true)
             {

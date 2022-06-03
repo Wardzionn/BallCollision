@@ -21,7 +21,7 @@ namespace Data
             CycleLength = msDelay;
         }
 
-        private void Spin()
+        private void Timer()
         {
             while (Running)
             {
@@ -41,7 +41,7 @@ namespace Data
             if (!Running)
             {
                 Running = true;
-                new Thread(Spin).Start();
+                new Thread(Timer).Start();
             }
         }
     }
