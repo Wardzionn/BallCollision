@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Logic;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Numerics;
-using Logic;
 
 namespace Data
 {
@@ -13,16 +11,21 @@ namespace Data
         public MyVector Velocity { get; set; }
         public double Mass { get; set; }
 
+    
+
+
         public Ball(MyVector position, MyVector velocity, double radius, double mass)
         {
+        
             Radius = radius;
             Position = position;
             Velocity = velocity;
             Mass = mass;
         }
 
-        public void moveBall(int edge)
+        public void moveBall()
         {
+            int edge = 500;
             double x = Position.X + Velocity.X;
             double y = Position.Y + Velocity.Y;
 
@@ -38,19 +41,15 @@ namespace Data
             Position.X = x;
             Position.Y = y;
         }
-        
-        public bool IsTouching(Ball ball2)
-        {
-            if (MyVector.Distance(this.Position, ball2.Position) <= this.Radius + ball2.Radius)
-            {
-                return true;
-            } 
-            else
-            {
-                return false;
-            }
-        }
 
+        public void logData()
+        {
+            
+                
+        }
+        
+        public bool IsTouching(Ball ball2) => MyVector.Distance(this.Position, ball2.Position) <= this.Radius + ball2.Radius;
+        
         public static List<MyVector> CalculateVels(Ball b1, Ball b2)
         {
             List<MyVector> result = new List<MyVector>();
@@ -74,14 +73,25 @@ namespace Data
             double b1_finalVelocityY = b1_magnitude * Math.Sin(b1_direction - collisionAngle);
             double b2_finalVelocityY = b2_magnitude * Math.Sin(b2_direction - collisionAngle);
             
-            MyVector b1_Velocity = new MyVector((float)(Math.Cos(collisionAngle) * b1_finalVelocityX + Math.Cos(collisionAngle + Math.PI / 2) * b1_finalVelocityY), (float)(Math.Sin(collisionAngle) * b1_finalVelocityX + Math.Sin(collisionAngle + Math.PI / 2) * b1_finalVelocityY));
-            MyVector b2_Velocity = new MyVector((float)(Math.Cos(collisionAngle) * b2_finalVelocityX + Math.Cos(collisionAngle + Math.PI / 2) * b2_finalVelocityY), (float)(Math.Sin(collisionAngle) * b2_finalVelocityX + Math.Sin(collisionAngle + Math.PI / 2) * b2_finalVelocityY));
+            MyVector b1_Velocity = new MyVector((float)(Math.Cos(collisionAngle) * b1_finalVelocityX
+                                                 + Math.Cos(collisionAngle + Math.PI / 2) * b1_finalVelocityY), (float)(Math.Sin(collisionAngle) * b1_finalVelocityX
+                                                 + Math.Sin(collisionAngle + Math.PI / 2) * b1_finalVelocityY));
+            
+            MyVector b2_Velocity = new MyVector((float)(Math.Cos(collisionAngle) * b2_finalVelocityX
+                                    + Math.Cos(collisionAngle + Math.PI / 2) * b2_finalVelocityY), (float)(Math.Sin(collisionAngle) * b2_finalVelocityX
+                                    + Math.Sin(collisionAngle + Math.PI / 2) * b2_finalVelocityY));
 
             result.Add(b1_Velocity);
             result.Add(b2_Velocity);
 
             return result;
 
+        }
+
+        public override string ToString()
+        {
+            return "Pos: " + Position.ToString() +
+              " Vel: " + Velocity.ToString();
         }
     }
 }

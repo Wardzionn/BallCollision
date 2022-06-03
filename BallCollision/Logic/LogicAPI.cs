@@ -36,6 +36,7 @@ namespace Logic
             }
             public override void addBalls(int count)
             {
+
                 state.AddBalls(count);
             }
 
